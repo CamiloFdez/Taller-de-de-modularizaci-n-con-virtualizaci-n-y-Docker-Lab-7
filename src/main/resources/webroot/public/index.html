@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AREP Microframework</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>AREP Java Microframework</h1>
+    <p>Here you can access the available endpoints of the microframework.</p>
+
+    <img src="/imagen.png" alt="Microframework illustration" class="logo">
+
+    <div class="card">
+        <h2>Available Endpoints</h2>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/pi">Calculate Pi</a></li>
+            <li><a href="/hello">Hello Endpoint</a></li>
+            <li><a href="/greeting">Greeting Endpoint</a></li>
+            <li>
+                <div class="input-group">
+                    <input type="text" id="nameInput" placeholder="Enter your name">
+                    <button onclick="goHello()">Say Hello</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div id="greeting-result"></div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
