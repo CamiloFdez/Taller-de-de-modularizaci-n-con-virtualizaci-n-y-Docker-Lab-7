@@ -16,7 +16,7 @@ public class HttpServerTest {
     public static void startServer() {
         new Thread(() -> {
             try {
-                MicroSpringBootApplication.main(null);
+                RestServiceApplication.main(null);
             } catch (Exception e) {
                 e.printStackTrace();
             }

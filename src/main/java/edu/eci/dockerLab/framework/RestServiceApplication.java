@@ -7,7 +7,7 @@ import edu.eci.dockerLab.annotations.GetMapping;
 import edu.eci.dockerLab.annotations.RequestParam;
 import edu.eci.dockerLab.annotations.RestController;
 
-public class MicroSpringBootApplication {
+public class RestServiceApplication {
 
     public static void main(String[] args) throws Exception {
 
