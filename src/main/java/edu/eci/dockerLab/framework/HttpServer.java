@@ -8,27 +8,12 @@ import java.util.Map;
 public class HttpServer {
 
     private static String staticFilesPath = "webroot";
+    private static volatile boolean running = true;
 
-    public static void main(String[] args) throws IOException, URISyntaxException {
-
-        ServerSocket serverSocket;
-
+    private static void handleRequest(Socket clientSocket) {
         try {
-            serverSocket = new ServerSocket(8080);
-            System.out.println("Servidor iniciado en puerto 8080");
-        } catch (IOException e) {
-            System.err.println("Could not listen on port: 8080.");
-            return;
-        }
-
-        while (true) {
-
-            System.out.println("Listo para recibir ...");
-
-            Socket clientSocket = serverSocket.accept();
-
             BufferedReader in = new BufferedReader(
-                    new InputStreamReader(clientSocket.getInputStream()));
+            new InputStreamReader(clientSocket.getInputStream()));
 
             OutputStream outStream = clientSocket.getOutputStream();
             PrintWriter out = new PrintWriter(outStream, true);
@@ -125,7 +110,37 @@ public class HttpServer {
             in.close();
             out.close();
             clientSocket.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) throws IOException, URISyntaxException {
+
+        ServerSocket serverSocket;
+
+        try {
+            serverSocket = new ServerSocket(8080);
+            System.out.println("Servidor iniciado en puerto 8080");
+        } catch (IOException e) {
+            System.err.println("Could not listen on port: 8080.");
+            return;
+        }
+
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            System.out.println("Apagando servidor...");
+            running = false;
+        }));
+
+        while (running) {
+            System.out.println("Listo para recibir ...");
+
+            Socket clientSocket = serverSocket.accept();
+
+            new Thread(() -> handleRequest(clientSocket)).start();
+        }
+
     }
 
     public static void get(String path, WebMethod wm) {
