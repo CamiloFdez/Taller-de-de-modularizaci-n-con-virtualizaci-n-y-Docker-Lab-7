@@ -305,7 +305,9 @@ The following video demonstrates all the http endpoints working correctly, the D
 
 YouTube Video:
 
-![Video Demonstration](https://youtu.be/MExj_wE_iRs?si=4X0TR8yCm9jEKTrE)
+```
+https://youtu.be/MExj_wE_iRs?si=4X0TR8yCm9jEKTrE
+```
 
 ---
 
